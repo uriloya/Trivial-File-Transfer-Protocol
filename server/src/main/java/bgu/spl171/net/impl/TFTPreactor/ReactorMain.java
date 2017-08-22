@@ -1,0 +1,16 @@
+package bgu.spl171.net.impl.TFTPreactor;
+import bgu.spl171.net.impl.TFTP.PacketEncoderDecoder;
+import bgu.spl171.net.impl.TFTP.TFTPProtocol;
+import bgu.spl171.net.srv.Server;
+
+public class ReactorMain
+{
+	public static void main(String[] args)
+	{
+		int port = Integer.parseInt(args[0]);
+		Server.reactor(4,
+				port,
+				()-> new TFTPProtocol(),
+				()-> new PacketEncoderDecoder()).serve();
+	}
+}
